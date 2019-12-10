@@ -10,7 +10,7 @@ written in C++-17 using the OpenGL core version 4.5.
 
 ### Linux
 
-The repository comes with a versatile install script. Clone the repository and run the installer like so:
+The repository comes with a versatile install script. It offers support for a wide variety of distributions including Debian, Fedora and Arch/Manjaro Linux. Clone the repository and run the installer like so:
 
     git clone https://github.com/D3PSI/pbrrenderer.git
     cd pbrrenderer/
@@ -18,6 +18,14 @@ The repository comes with a versatile install script. Clone the repository and r
 
 Then, run or debug the application with `./RUN.sh` respectively `./DEBUG.sh`. If you want to recompile and 
 automatically run the software, run either `make run` or `make debug`.
+
+### Windows
+
+Windows is currently not supported. Support will be added in future versions.
+
+### macOS
+
+macOS is currently not supported. Support may be added in future versions.
 
 ## Uninstallation
 
