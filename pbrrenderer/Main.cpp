@@ -6,13 +6,12 @@
  * 
  *  Refer to README.md for installation and compilation instructions
  */
+#include <PBR.hpp>
 
-#include <iostream>
 
 /**
- *  Defines the entry point for the application 
+ *  Defines the main entry point for the application
  */
 int main() {
-    std::cout << "Hello World!" << std::endl;
     return 0;
 }

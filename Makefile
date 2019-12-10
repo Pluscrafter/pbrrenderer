@@ -1,4 +1,4 @@
-CFLAGS = -std=c++17 -Iext/SDL/include -Iext/stbimage -Iext/glad/include
+CFLAGS = -std=c++17 -Iext/SDL/include -Iext/stbimage -Iext/glad/include -Ipbrrenderer/pbr
 LDFLAGS = `pkg-config --static --libs glfw3` -lGL -lassimp -lSDL2 -lSDL2_image -lpthread
 
 pbrrenderer-base: pbrrenderer/*.cpp
