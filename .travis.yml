@@ -1,5 +1,15 @@
 language: cpp
 os: linux
+compiler:
+  - g++-7
+  - clang++-6.0
+
+jobs:
+  include:
+    - os: linux
+      dist: xenial
+    - os: linux
+      dist: bionic
 
 addons:
   apt:
@@ -8,10 +18,7 @@ addons:
     packages:
       - g++-7
       - gcc-7
-
-before_install: 
-  - export CC=gcc-7
-  - export CXX=g++-7
+      - clang++-6.0
 
 install: 
   - sudo ./INSTALL.sh
