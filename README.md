@@ -1,7 +1,7 @@
 # pbrrenderer
 
 [![Build Status](https://travis-ci.com/D3PSI/pbrrenderer.svg?branch=master)](https://travis-ci.com/D3PSI/pbrrenderer)
-[![C/C++ CI](https://github.com/D3PSI/pbrrenderer/workflows/C/C++%20CI/badge.svg)](https://github.com/D3PSI/pbrrenderer/actions?query=workflow%3A"C/C+++CI")
+[![C/C++ CI](https://github.com/D3PSI/pbrrenderer/workflows/C/C++%20CI/badge.svg)](https://github.com/D3PSI/pbrrenderer/actions?query=workflow%3A"C%2FC%2B%2B+CI")
 
 This repository contains my first ever physically-based rendering application, 
 written in C++-17 using the OpenGL core version 4.5.  
@@ -16,8 +16,9 @@ The repository comes with a versatile install script. It offers support for a wi
     cd pbrrenderer/
     sudo ./INSTALL.sh
 
-Then, run or debug the application with `./RUN.sh` respectively `./DEBUG.sh`. If you want to recompile and 
-automatically run the software, run either `make run` or `make debug`.
+Then, run or debug the application with `./RUN.sh` respectively `./DEBUG.sh`. You can also execute the executable 
+yourself after the automatic build the installer executes by typing `./pbr` in the project root directory. 
+If you want to recompile and automatically run the software, run either `make run` or `make debug`.
 
 ### Windows
 
