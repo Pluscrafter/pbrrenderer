@@ -6,12 +6,13 @@
  * 
  *  Refer to README.md for installation and compilation instructions
  */
-#include <PBR.hpp>
+#include "pbr/PBR.hpp"
 
 
 /**
  *  Defines the main entry point for the application
  */
 int main() {
+    pbr::init();
     return 0;
 }

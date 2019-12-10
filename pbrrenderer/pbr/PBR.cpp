@@ -9,6 +9,9 @@
  *  @brief Main file for PBR
  *  @author D3PSI
  */
+#ifndef PBR_CPP
+#define PBR_CPP
+
 #include "PBR.hpp"
 
 
@@ -18,12 +21,6 @@ namespace pbr {
         return PBR_OK;
     }
 
-    PBR_STATUS loop() {
-        return PBR_OK;
-    }
-
-    PBR_STATUS clean() {
-        return PBR_OK;
-    }
-
 }
+
+#endif      // PBR_CPP
