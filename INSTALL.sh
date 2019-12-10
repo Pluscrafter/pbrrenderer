@@ -39,7 +39,7 @@ else
     fi
     echo "Trying to install dependencies for ${distroname} using ${pkgman} on ${session}."
     if [[ ${pkgman} == yum ]]; then
-        yum install cmake make pkgconf-pkg-config gcc gcc-c++ glm-devel libglfw3 libglfw-devel assimp assimp-devel sdl2 sdl2-devel sdl2_image sdl2_image-devel
+        yum install cmake make pkgconf-pkg-config gcc g++ glm-devel libglfw3 libglfw-devel assimp assimp-devel SDL2 SDL2-devel SDL2_image SDL2_image-devel
     elif [[ ${pkgman} == pacman ]]; then
         pacman -Sy cmake make pkg-config gcc g++ gdb glm glfw-${session} assimp sdl2 sdl2_image
     elif [[ ${pkgman} == apt ]]; then
