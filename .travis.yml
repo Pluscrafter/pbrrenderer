@@ -1,0 +1,27 @@
+language: cpp
+os: linux
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-7
+      - gcc-7
+
+before_install: 
+  - export CC=gcc-7
+  - export CXX=g++-7
+
+install: 
+  - sudo ./INSTALL.sh
+  
+script:
+  - make
+
+notifications:
+  email:
+    recipients:
+      - d3psigames@gmail.com
+    on_success: always
+    on_failure: always

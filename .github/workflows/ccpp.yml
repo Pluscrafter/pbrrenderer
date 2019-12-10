@@ -1,0 +1,16 @@
+name: C/C++ CI
+
+on: [push, pull_request]
+
+jobs:
+ build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-18.04, ubuntu-latest ]
+    name: Make compilation on ${{ matrix.os }} 
+    steps:
+      - uses: actions/checkout@master
+      - run: | 
+          sudo ./INSTALL.sh
+          make 
