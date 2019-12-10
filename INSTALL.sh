@@ -32,24 +32,44 @@ else
     else
         distroname="$(uname -s) $(uname -r)"
     fi
-    if [[ ${sessiontype} == x11 ]]; then
+    if [ ${sessiontype}==x11 ]; then
         session=x11
-    elif [[ ${sessiontype} == gnome-wayland ]]; then
+    elif [ ${sessiontype}==gnome-wayland ]; then
         session=wayland
     fi
     echo "Trying to install dependencies for ${distroname} using ${pkgman} on ${session}."
+    status=-1
     if [[ ${pkgman} == yum ]]; then
         yum install cmake make pkgconf-pkg-config gcc gcc-c++ glm-devel libglfw3 libglfw-devel assimp assimp-devel sdl2 sdl2-devel sdl2_image sdl2_image-devel
+        if [[ $? -ne 0 ]]; then
+            status=1
+        else
+            status=0
+        fi
     elif [[ ${pkgman} == pacman ]]; then
-        pacman -Sy cmake make pkg-config gcc g++ gdb glm glfw-${session} assimp sdl2 sdl2_image
+        pacman -Sy cmake make pkg-config gcc gdb glm glfw-${session} assimp sdl2 sdl2_image
+        if [[ $? -ne 0 ]]; then
+            status=1
+        else
+            status=0
+        fi
     elif [[ ${pkgman} == apt ]]; then
         apt install make pkg-config gcc g++ gdb libglfw3 libglfw3-dev libglm-dev libassimp-dev assimp-utils libegl1-mesa-dev libsdl2-2.0-0 libsdl2-dev libsdl2-image-2.0-0 libsdl2-image-dev
+        if [[ $? -ne 0 ]]; then
+            status=1
+        else
+            status=0
+        fi
     else
         echo "No supported package manager found!"
         exit 1
     fi
-    echo "Successfully installed dependencies for your system. Building project..."
-    make
-    echo "Built the project. Execute it by running './RUN.sh', 'make run' or 'make debug'. Enjoy!"
-    exit 0
+    if [[ status==0 ]]; then
+        echo "Successfully installed dependencies for your system. Building project..."
+        make
+        echo "Built the project. Execute it by running './RUN.sh', 'make run' or 'make debug'. Enjoy!"
+        exit 0
+    else
+        exit 1
+    fi
 fi
