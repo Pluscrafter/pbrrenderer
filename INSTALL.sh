@@ -40,7 +40,7 @@ else
     echo "Trying to install dependencies for ${distroname} using ${pkgman} on ${session}."
     status=-1
     if [[ ${pkgman} == yum ]]; then
-        yum install cmake make pkgconf-pkg-config gcc gcc-c++ glm-devel libglfw3 libglfw-devel assimp assimp-devel sdl2 sdl2-devel sdl2_image sdl2_image-devel
+        yum install cmake make pkgconf-pkg-config gcc g++ glm-devel glfw glfw-devel assimp assimp-devel SDL2 SDL2-devel SDL2_image SDL2_image-devel
         if [[ $? -ne 0 ]]; then
             status=1
         else
