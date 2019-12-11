@@ -1,14 +1,14 @@
 /**
- *  @file PBR_STATUS.hpp
- *  @brief Defines a status code enumeration
- *  @author D3PSI
+ * @file PBR_STATUS.hpp
+ * @brief Defines a status code enumeration
+ * @author D3PSI
  */
 #ifndef PBR_STATUS_HPP
 #define PBR_STATUS_HPP
 
 
 /**
- *  Defines a status code enumeration
+ * Defines a status code enumeration
  */
 typedef enum PBR_STATUS {
     PBR_OK = 0,

@@ -1,8 +1,10 @@
 CFLAGS = -std=c++17 -Iext/SDL/include -Iext/stbimage -Iext/glad/include
 LDFLAGS = `pkg-config --static --libs glfw3` -lGL -lassimp -lSDL2 -lSDL2_image -lpthread
 
-pbrrenderer-base: pbrrenderer/*.cpp
-	$(CXX) $(CFLAGS) -o "bin/Linux/x64/pbr" pbrrenderer/*.cpp ext/glad/src/glad.c $(LDFLAGS)
+SOURCES = $(wildcard pbrrenderer/*.cpp) $(wildcard pbrrenderer/*/*.cpp) $(wildcard pbrrenderer/*/*/*.cpp) ext/glad/src/glad.c
+
+pbrrenderer-base: $(SOURCES)
+	@$(CXX) $(CFLAGS) -o "bin/Linux/x64/pbr" $(SOURCES) $(LDFLAGS)
 
 .PHONY: run debug clean
 
