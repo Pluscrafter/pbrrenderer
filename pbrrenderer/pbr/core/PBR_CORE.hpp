@@ -8,8 +8,10 @@
 
 #include "../PBR.hpp"
 #include "../util/PBR_STATUS.hpp"
+#include "../ui/SDLLoadingScreen.hpp"
 #include "util/GLFW_DISPLAY_MODE.hpp"
 
+#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include <iostream>
@@ -20,6 +22,10 @@ namespace pbr {
      * Contains core functionality for the PBR engine
      */
     namespace core {
+
+        extern SDLLoadingScreen* loadingScreen;
+        extern GLFWwindow* window;
+        extern GLFWmonitor* monitor;
 
         /**
          * Initializes the PBR core engine

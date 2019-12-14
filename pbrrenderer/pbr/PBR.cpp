@@ -25,17 +25,13 @@ namespace pbr {
     const char* APPLICATION_ICON = "res/images/lion_cropped.png";
     GLFW_DISPLAY_MODE DISPLAY_MODE = GLFW_WINDOWED;
 
-    SDLLoadingScreen* loadingScreen = nullptr;
-
     PBR_STATUS init() {
-        pbr::loadingScreen = new SDLLoadingScreen(LOADING_SCREEN_IMAGE);
         pbr::core::init();
         return PBR_OK;
     }
 
     PBR_STATUS clean() {
         pbr::core::clean();
-        delete pbr::loadingScreen;
         return PBR_OK;
     }
 

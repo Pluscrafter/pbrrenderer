@@ -29,7 +29,7 @@ public:
      * Closes the loading screen
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS close(void);
+    PBR_STATUS quit(void);
 
 private:
 
@@ -37,6 +37,9 @@ private:
     SDL_Surface* imageSurface = nullptr;
     SDL_Texture* background = nullptr;
     SDL_Renderer* renderer = nullptr;
+
+    uint32_t width = 0;
+    uint32_t height = 0;
 
     bool closeVar = false;
     std::mutex closeMutex;

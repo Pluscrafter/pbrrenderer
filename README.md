@@ -4,7 +4,7 @@
 [![C/C++ CI](https://github.com/D3PSI/pbrrenderer/workflows/C/C++%20CI/badge.svg)](https://github.com/D3PSI/pbrrenderer/actions?query=workflow%3A"C%2FC%2B%2B+CI")
 
 This repository contains my first ever physically-based rendering application, 
-written in C++-17 using the OpenGL core version 4.5.  
+written in C++-17 using the OpenGL core version 3.3 for backwards compatibility.  
 
 ## Installation
 

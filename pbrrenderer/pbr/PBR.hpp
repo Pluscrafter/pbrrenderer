@@ -31,8 +31,6 @@ namespace pbr {
     extern const char* APPLICATION_ICON;
     extern GLFW_DISPLAY_MODE DISPLAY_MODE;
 
-    extern SDLLoadingScreen* loadingScreen;
-
     /**
      * Initializes the PBR core engine
      * @return Returns 0 or bigger on success, returns a negative number on failure

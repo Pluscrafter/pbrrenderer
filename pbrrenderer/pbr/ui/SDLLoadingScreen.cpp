@@ -11,24 +11,32 @@
 
 
 SDLLoadingScreen::SDLLoadingScreen(const char* _image) {
-    if(SDL_Init(SDL_INIT_EVERYTHING) < 0)
+    if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
         std::string error = SDL_GetError();
+        std::runtime_error("SDL2 Error: " + error);
+    }
+    imageSurface = IMG_Load(_image);
+    if(imageSurface == nullptr) {
+        std::string error = SDL_GetError();
+        std::runtime_error("SDL2 Error: " + error);
+    }
+    width = imageSurface->w;
+    height = imageSurface->h;
     window = SDL_CreateWindow(
         pbr::TITLE,
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        1216,
-        614,
+        width,
+        height,
         SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_BORDERLESS);
     renderer = SDL_CreateRenderer(
         window,
         -1,
         SDL_RENDERER_ACCELERATED);
-    if(window == nullptr)
+    if(window == nullptr) {
         std::string error = SDL_GetError();
-    imageSurface = IMG_Load(_image);
-    if(imageSurface == nullptr)
-        std::string error = SDL_GetError();
+        std::runtime_error("SDL2 Error: " + error);
+    }
     background = SDL_CreateTextureFromSurface(renderer, imageSurface);
     SDL_SetWindowIcon(window, imageSurface);
     std::thread t0(&SDLLoadingScreen::loop, this);
@@ -48,26 +56,30 @@ PBR_STATUS SDLLoadingScreen::loop() {
         SDL_RenderCopy(
             renderer,
             background,
-            NULL,
-            NULL);
+            nullptr,
+            nullptr);
         SDL_RenderPresent(renderer);
     }
-    clean();
     return PBR_OK;
 }
 
-PBR_STATUS SDLLoadingScreen::close() {
+PBR_STATUS SDLLoadingScreen::quit() {
     this->closeMutex.lock();
     this->closeVar = true;
     this->closeMutex.unlock();
+    this->clean();
     return PBR_OK;
 }
 
 PBR_STATUS SDLLoadingScreen::clean() {
     SDL_FreeSurface(imageSurface);
+    imageSurface = nullptr;
     SDL_DestroyTexture(background);
+    background = nullptr;
     SDL_DestroyRenderer(renderer);
+    renderer = nullptr;
     SDL_DestroyWindow(window);
+    window = nullptr;
     IMG_Quit();
     SDL_Quit();
     return PBR_OK;

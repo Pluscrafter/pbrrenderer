@@ -15,10 +15,12 @@ namespace pbr {
 
     namespace core {
 
+        SDLLoadingScreen* loadingScreen = nullptr;
         GLFWwindow* window = nullptr;
         GLFWmonitor* monitor = nullptr;
 
         PBR_STATUS init() {
+            pbr::core::loadingScreen = new SDLLoadingScreen(LOADING_SCREEN_IMAGE);
             pbr::core::initGLFW();
             pbr::core::initWindow();
             pbr::core::initOpenGL();
@@ -27,8 +29,8 @@ namespace pbr {
 
         PBR_STATUS initGLFW() {
             glfwInit();
-            glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-            glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+            glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
             glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
             glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
             glfwWindowHint(GLFW_FOCUSED, GLFW_TRUE);
@@ -90,13 +92,24 @@ namespace pbr {
         }
 
         PBR_STATUS initOpenGL() {
-            pbr::loadingScreen->close();
+            if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
+                throw std::runtime_error("Failed to gather function pointers for OpenGL through GLAD");
+            }
+            glViewport(0, 0, pbr::WIDTH, pbr::HEIGHT);
+            pbr::core::loadingScreen->quit();
             glfwShowWindow(window);
             glfwFocusWindow(window);
+            delete pbr::core::loadingScreen;
             return PBR_OK;
         }
 
         PBR_STATUS loop() {
+            while(!glfwWindowShouldClose(pbr::core::window)) {
+                std::cout << "This seems to be working.\n";
+                glfwSwapBuffers(pbr::core::window);
+                glfwPollEvents();
+            }
+            glfwTerminate();
             return PBR_OK;
         }
 
