@@ -23,40 +23,47 @@ namespace pbr {
 
     const char* LOADING_SCREEN_IMAGE = "res/images/lion.png";
     const char* APPLICATION_ICON = "res/images/lion_cropped.png";
-    GLFW_DISPLAY_MODE DISPLAY_MODE = GLFW_WINDOWED;
+    pbr::core::GLFW_DISPLAY_MODE DISPLAY_MODE = pbr::core::GLFW_WINDOWED;
 
-    PBR_STATUS init() {
+    pbr::core::PBRKeyboardInputCallbackFun keyInputCB;
+
+    PBR_STATUS pbrInit() {
         pbr::core::init();
         return PBR_OK;
     }
 
-    PBR_STATUS execute() {
+    PBR_STATUS pbrExecute() {
         return pbr::core::execute();
     }
 
-    PBR_STATUS clean() {
+    PBR_STATUS pbrClean() {
         pbr::core::clean();
         return PBR_OK;
     }
 
-    PBR_STATUS size(uint32_t _width, uint32_t _height) {
+    PBR_STATUS pbrSize(uint32_t _width, uint32_t _height) {
         WIDTH = _width;
         HEIGHT = _height;
         return PBR_OK;
     }
 
-    PBR_STATUS title(const char* _title) {
+    PBR_STATUS pbrTitle(const char* _title) {
         TITLE = _title;
         return PBR_OK;
     }
 
-    PBR_STATUS loadingScreenImage(const char* _image) {
+    PBR_STATUS pbrLoadingScreenImage(const char* _image) {
         LOADING_SCREEN_IMAGE = _image;
         return PBR_OK;
     }
 
-    PBR_STATUS applicationIcon(const char* _icon) {
+    PBR_STATUS pbrApplicationIcon(const char* _icon) {
         APPLICATION_ICON = _icon;
+        return PBR_OK;
+    }
+
+    PBR_STATUS pbrKeyboardInputCallback(pbr::core::PBRKeyboardInputCallbackFun _cbfun) {
+        keyInputCB = _cbfun;
         return PBR_OK;
     }
 

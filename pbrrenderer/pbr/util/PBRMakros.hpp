@@ -1,5 +1,5 @@
 /**
- * @file Makros.hpp
+ * @file PBRMakros.hpp
  * @brief Defines useful makros and constant expressions
  * @author D3PSI
  */

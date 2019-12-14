@@ -19,15 +19,18 @@ namespace pbr {
         GLFWwindow* window = nullptr;
         GLFWmonitor* monitor = nullptr;
 
+        uint32_t width = pbr::WIDTH;
+        uint32_t height = pbr::HEIGHT;
+
         PBR_STATUS init() {
             pbr::core::loadingScreen = new SDLLoadingScreen(LOADING_SCREEN_IMAGE);
-            pbr::core::initGLFW();
-            pbr::core::initWindow();
-            pbr::core::initOpenGL();
             return PBR_OK;
         }
 
         PBR_STATUS execute() {
+            pbr::core::initGLFW();
+            pbr::core::initWindow();
+            pbr::core::initOpenGL();
             pbr::core::loop();
             return PBR_OK;
         }
@@ -46,7 +49,7 @@ namespace pbr {
         PBR_STATUS initWindow() {
             monitor = glfwGetPrimaryMonitor();
             const GLFWvidmode* mode = glfwGetVideoMode(monitor);
-            if(pbr::DISPLAY_MODE == GLFW_WINDOWED) {
+            if(pbr::DISPLAY_MODE == pbr::core::GLFW_WINDOWED) {
                 window = glfwCreateWindow(
                     pbr::WIDTH,
                     pbr::HEIGHT,
@@ -58,7 +61,7 @@ namespace pbr {
                     mode->width / 2 - pbr::WIDTH / 2,
                     mode->height / 2 - pbr::HEIGHT / 2);
             }
-            else if(pbr::DISPLAY_MODE == GLFW_FULLSCREEN) {
+            else if(pbr::DISPLAY_MODE == pbr::core::GLFW_FULLSCREEN) {
                 glfwWindowHint(GLFW_RED_BITS, mode->redBits);
                 glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
                 glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
@@ -70,7 +73,7 @@ namespace pbr {
                     monitor,
                     nullptr);
             }
-            else if(pbr::DISPLAY_MODE == GLFW_BORDERLESS) {
+            else if(pbr::DISPLAY_MODE == pbr::core::GLFW_BORDERLESS) {
                 window = glfwCreateWindow(
                     mode->width,
                     mode->height,
@@ -90,9 +93,9 @@ namespace pbr {
             glfwSetWindowIcon(window, 1, windowIcon);
             stbi_image_free(windowIcon[0].pixels);
             glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-            glfwSetFramebufferSizeCallback(window, pbr::core::framebufferResizeCallback);
-            glfwSetCursorPosCallback(window, pbr::core::mouseMoveCallback);
-            glfwSetScrollCallback(window, pbr::core::mouseScrollCallback);
+            glfwSetFramebufferSizeCallback(window, pbr::core::framebufferResizeCB);
+            glfwSetCursorPosCallback(window, pbr::core::mouseMoveCB);
+            glfwSetScrollCallback(window, pbr::core::mouseScrollCB);
             return PBR_OK;
         }
 
@@ -123,18 +126,23 @@ namespace pbr {
         } 
 
         PBR_STATUS keyInput() {
-            if (glfwGetKey(pbr::core::window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+            if(glfwGetKey(pbr::core::window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
                 glfwSetWindowShouldClose(pbr::core::window, GLFW_TRUE);
+            if(pbr::keyInputCB != nullptr)
+                keyInputCB(pbr::core::window);
             return PBR_OK;
         }
 
-        void framebufferResizeCallback(GLFWwindow* _window, int _width, int _height) {
+        void framebufferResizeCB(GLFWwindow* _window, int _width, int _height) {
+            pbr::core::width = _width;
+            pbr::core::height = _height;
+            glViewport(0, 0, _width, _height);
         }
 
-        void mouseMoveCallback(GLFWwindow* _window, double _xPos, double _yPos) {
+        void mouseMoveCB(GLFWwindow* _window, double _xPos, double _yPos) {
         }
         
-        void mouseScrollCallback(GLFWwindow* _window, double _xOff, double _yOff) {
+        void mouseScrollCB(GLFWwindow* _window, double _xOff, double _yOff) {
         }
 
     }

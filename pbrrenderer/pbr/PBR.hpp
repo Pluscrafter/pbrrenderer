@@ -12,10 +12,12 @@
 #ifndef PBR_HPP
 #define PBR_HPP
 
+#include <glad/glad.h>
 #include "core/PBR_CORE.hpp"
 #include "util/PBR_STATUS.hpp"
 #include "ui/SDLLoadingScreen.hpp"
 #include "core/util/GLFW_DISPLAY_MODE.hpp"
+#include "core/util/PBRCallbackFunctions.hpp"
 
 
 /**
@@ -29,25 +31,27 @@ namespace pbr {
 
     extern const char* LOADING_SCREEN_IMAGE;
     extern const char* APPLICATION_ICON;
-    extern GLFW_DISPLAY_MODE DISPLAY_MODE;
+    extern pbr::core::GLFW_DISPLAY_MODE DISPLAY_MODE;
+
+    extern pbr::core::PBRKeyboardInputCallbackFun keyInputCB;
 
     /**
      * Initializes the PBR core engine
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS init(void);
+    PBR_STATUS pbrInit(void);
 
     /**
      * Starts the main application
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS execute(void);
+    PBR_STATUS pbrExecute(void);
 
     /**
      * Cleans allocated resources
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS clean(void);
+    PBR_STATUS pbrClean(void);
 
     /**
      * Sets the width and height of the application window
@@ -55,28 +59,35 @@ namespace pbr {
      * @param _height The desired height
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS size(uint32_t _width, uint32_t _height);
+    PBR_STATUS pbrSize(uint32_t _width, uint32_t _height);
 
     /**
      * Sets the title of the application window
      * @param _title The desired title
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS title(const char* _title);
+    PBR_STATUS pbrTitle(const char* _title);
 
     /**
      * Sets the image of the main loading screen
      * @param _image The path to the image on disk
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS loadingScreenImage(const char* _image);
+    PBR_STATUS pbrLoadingScreenImage(const char* _image);
 
     /**
      * Sets the icon of the application
      * @param _icon The path to the icon on disk
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS applicationIcon(void);
+    PBR_STATUS pbrApplicationIcon(const char* _icon);
+
+    /**
+     * Sets the keyboard input callback function
+     * @param _cbfun The callback function
+     * @return Returns 0 or bigger on success, returns a negative number on failure
+     */
+    PBR_STATUS pbrKeyboardInputCallback(pbr::core::PBRKeyboardInputCallbackFun _cbfun);
 
 }
 

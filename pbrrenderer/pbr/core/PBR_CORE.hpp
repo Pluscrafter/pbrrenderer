@@ -11,7 +11,6 @@
 #include "../ui/SDLLoadingScreen.hpp"
 #include "util/GLFW_DISPLAY_MODE.hpp"
 
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include <iostream>
@@ -81,7 +80,7 @@ namespace pbr {
          * @param _width The new width of the GLFWwindow
          * @param _height The new height of the GLFWwindow
          */
-        void framebufferResizeCallback(GLFWwindow* _window, int _width, int _height);
+        void framebufferResizeCB(GLFWwindow* _window, int _width, int _height);
 
         /**
          * Callback function for mouse movement events through GLFW
@@ -89,7 +88,7 @@ namespace pbr {
          * @param _xPos The new x-position of the mouse pointer
          * @param _yPos The new y-position of the mouse pointer
          */
-        void mouseMoveCallback(GLFWwindow* _window, double _xPos, double _yPos);
+        void mouseMoveCB(GLFWwindow* _window, double _xPos, double _yPos);
 
         /**
          * Callback function for mouse scroll events through GLFW
@@ -97,7 +96,7 @@ namespace pbr {
          * @param _xOff The amount of scroll in the x-direction (usually 0)
          * @param _yOff The amount of scroll in the y-direction
          */        
-        void mouseScrollCallback(GLFWwindow* _window, double _xOff, double yOff_);
+        void mouseScrollCB(GLFWwindow* _window, double _xOff, double yOff_);
 
     }
 
