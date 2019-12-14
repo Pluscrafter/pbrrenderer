@@ -23,48 +23,61 @@ namespace pbr {
 
     const char* LOADING_SCREEN_IMAGE = "res/images/lion.png";
     const char* APPLICATION_ICON = "res/images/lion_cropped.png";
-    pbr::core::GLFW_DISPLAY_MODE DISPLAY_MODE = pbr::core::GLFW_WINDOWED;
+    pbr::util::PBR_DISPLAY_MODE DISPLAY_MODE = pbr::util::PBR_WINDOWED;
 
-    pbr::core::PBRKeyboardInputCallbackFun keyInputCB;
+    pbr::util::PBRKeyboardInputCallbackFun keyInputCB;
 
-    PBR_STATUS pbrInit() {
+    pbr::util::PBR_STATUS pbrInit() {
         pbr::core::init();
-        return PBR_OK;
+        return pbr::util::PBR_OK;
     }
 
-    PBR_STATUS pbrExecute() {
+    pbr::util::PBR_STATUS pbrExecute() {
         return pbr::core::execute();
     }
 
-    PBR_STATUS pbrClean() {
+    pbr::util::PBR_STATUS pbrClean() {
         pbr::core::clean();
-        return PBR_OK;
+        return pbr::util::PBR_OK;
     }
 
-    PBR_STATUS pbrSize(uint32_t _width, uint32_t _height) {
+    pbr::util::PBR_STATUS pbrSize(uint32_t _width, uint32_t _height) {
         WIDTH = _width;
         HEIGHT = _height;
-        return PBR_OK;
+        return pbr::util::PBR_OK;
     }
 
-    PBR_STATUS pbrTitle(const char* _title) {
+    pbr::util::PBR_STATUS pbrTitle(const char* _title) {
         TITLE = _title;
-        return PBR_OK;
+        return pbr::util::PBR_OK;
     }
 
-    PBR_STATUS pbrLoadingScreenImage(const char* _image) {
+    pbr::util::PBR_STATUS pbrLoadingScreenImage(const char* _image) {
         LOADING_SCREEN_IMAGE = _image;
-        return PBR_OK;
+        return pbr::util::PBR_OK;
     }
 
-    PBR_STATUS pbrApplicationIcon(const char* _icon) {
+    pbr::util::PBR_STATUS pbrApplicationIcon(const char* _icon) {
         APPLICATION_ICON = _icon;
-        return PBR_OK;
+        return pbr::util::PBR_OK;
     }
 
-    PBR_STATUS pbrKeyboardInputCallback(pbr::core::PBRKeyboardInputCallbackFun _cbfun) {
+    pbr::util::PBR_STATUS pbrDisplayMode(pbr::util::PBR_DISPLAY_MODE _mode) {
+        pbr::DISPLAY_MODE = _mode;
+        return pbr::util::PBR_OK;
+    }
+
+    pbr::util::PBR_STATUS pbrKeyboardInputCallback(pbr::util::PBRKeyboardInputCallbackFun _cbfun) {
         keyInputCB = _cbfun;
-        return PBR_OK;
+        return pbr::util::PBR_OK;
+    }
+
+    uint32_t pbrGetCurrentWidth() {
+        return pbr::core::width;
+    }
+
+    uint32_t pbrGetCurrentHeight() {
+        return pbr::core::height;
     }
 
 }

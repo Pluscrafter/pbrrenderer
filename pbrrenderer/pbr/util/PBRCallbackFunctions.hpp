@@ -11,7 +11,7 @@
 
 namespace pbr {
 
-    namespace core {
+    namespace util {
 
         /**
          * Defines a callback function for keyboard inputs

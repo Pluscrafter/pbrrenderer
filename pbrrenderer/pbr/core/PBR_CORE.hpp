@@ -7,13 +7,11 @@
 #define PBR_CORE_HPP
 
 #include "../PBR.hpp"
-#include "../util/PBR_STATUS.hpp"
-#include "../ui/SDLLoadingScreen.hpp"
-#include "util/GLFW_DISPLAY_MODE.hpp"
-
-#include <GLFW/glfw3.h>
+#include "../ui/PBR_UI.hpp"
+#include "../util/PBR_UTIL.hpp"
 
 #include <iostream>
+
 
 namespace pbr {
 
@@ -22,57 +20,56 @@ namespace pbr {
      */
     namespace core {
 
-        extern SDLLoadingScreen* loadingScreen;
-        extern GLFWwindow* window;
-        extern GLFWmonitor* monitor;
+        extern uint32_t width;
+        extern uint32_t height;
 
         /**
          * Initializes the PBR core engine
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        PBR_STATUS init(void);
+        pbr::util::PBR_STATUS init(void);
 
         /**
          * Starts the main application
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        PBR_STATUS execute(void);
-
-        /**
-         * Initializes the windowing library
-         * @return Returns 0 or bigger on success, returns a negative number on failure
-         */
-        PBR_STATUS initGLFW(void);
-
-        /**
-         * Initializes the window
-         * @return Returns 0 or bigger on success, returns a negative number on failure
-         */
-        PBR_STATUS initWindow(void);
+        pbr::util::PBR_STATUS execute(void);
 
         /**
          * Initializes everything OpenGL-related
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        PBR_STATUS initOpenGL(void);
+        pbr::util::PBR_STATUS initOpenGL(void);
 
         /**
          * Contains the main loop
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        PBR_STATUS loop(void);
+        pbr::util::PBR_STATUS loop(void);
 
         /**
          * Cleans all allocated resources and handles shutdown operations
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        PBR_STATUS clean(void);
+        pbr::util::PBR_STATUS clean(void);
 
         /**
          * Processes keyboard inputs
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        PBR_STATUS keyInput(void);
+        pbr::util::PBR_STATUS keyInput(void);
+
+        /**
+         * Coordinates one-time setup steps
+         * @return Returns 0 or bigger on success, returns a negative number on failure
+         */
+        pbr::util::PBR_STATUS setup(void);
+
+        /**
+         * Coordinates main rendering operations
+         * @return Returns 0 or bigger on success, returns a negative number on failure
+         */
+        pbr::util::PBR_STATUS render(void);
 
         /**
          * Callback function for window resize events through GLFW

@@ -1,16 +1,16 @@
 /**
- * @file SDLLoadingScreen.cpp
+ * @file PBRLoadingScreen.cpp
  * @brief Defines a loading screen object using SDL2
  * @author D3PSI
  */
-#ifndef SDL_LOADING_SCREEN_CPP
-#define SDL_LOADING_SCREEN_CPP
+#ifndef PBR_LOADING_SCREEN_CPP
+#define PBR_LOADING_SCREEN_CPP
 
-#include "SDLLoadingScreen.hpp"
+#include "PBRLoadingScreen.hpp"
 #include "../PBR.hpp"
 
 
-SDLLoadingScreen::SDLLoadingScreen(const char* _image) {
+pbr::ui::PBRLoadingScreen::PBRLoadingScreen(const char* _image) {
     if(SDL_Init(SDL_INIT_EVERYTHING) < 0) {
         std::string error = SDL_GetError();
         std::runtime_error("SDL2 Error: " + error);
@@ -39,11 +39,11 @@ SDLLoadingScreen::SDLLoadingScreen(const char* _image) {
     }
     background = SDL_CreateTextureFromSurface(renderer, imageSurface);
     SDL_SetWindowIcon(window, imageSurface);
-    std::thread t0(&SDLLoadingScreen::loop, this);
+    std::thread t0(&PBRLoadingScreen::loop, this);
     t0.detach();
 }
 
-PBR_STATUS SDLLoadingScreen::loop() {
+pbr::util::PBR_STATUS pbr::ui::PBRLoadingScreen::loop() {
     SDL_Event e;
     while(!closeVar) {
         while(SDL_PollEvent(&e)) {
@@ -60,18 +60,18 @@ PBR_STATUS SDLLoadingScreen::loop() {
             nullptr);
         SDL_RenderPresent(renderer);
     }
-    return PBR_OK;
+    return pbr::util::PBR_OK;
 }
 
-PBR_STATUS SDLLoadingScreen::quit() {
+pbr::util::PBR_STATUS pbr::ui::PBRLoadingScreen::quit() {
     this->closeMutex.lock();
     this->closeVar = true;
     this->closeMutex.unlock();
     this->clean();
-    return PBR_OK;
+    return pbr::util::PBR_OK;
 }
 
-PBR_STATUS SDLLoadingScreen::clean() {
+pbr::util::PBR_STATUS pbr::ui::PBRLoadingScreen::clean() {
     SDL_FreeSurface(imageSurface);
     imageSurface = nullptr;
     SDL_DestroyTexture(background);
@@ -82,7 +82,7 @@ PBR_STATUS SDLLoadingScreen::clean() {
     window = nullptr;
     IMG_Quit();
     SDL_Quit();
-    return PBR_OK;
+    return pbr::util::PBR_OK;
 }
 
-#endif      // SDL_LOADING_SCREEN_CPP
+#endif      // PBR_LOADING_SCREEN_CPP

@@ -13,11 +13,10 @@
 #define PBR_HPP
 
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
 #include "core/PBR_CORE.hpp"
-#include "util/PBR_STATUS.hpp"
-#include "ui/SDLLoadingScreen.hpp"
-#include "core/util/GLFW_DISPLAY_MODE.hpp"
-#include "core/util/PBRCallbackFunctions.hpp"
+#include "ui/PBR_UI.hpp"
+#include "util/PBR_UTIL.hpp"
 
 
 /**
@@ -31,27 +30,27 @@ namespace pbr {
 
     extern const char* LOADING_SCREEN_IMAGE;
     extern const char* APPLICATION_ICON;
-    extern pbr::core::GLFW_DISPLAY_MODE DISPLAY_MODE;
+    extern pbr::util::PBR_DISPLAY_MODE DISPLAY_MODE;
 
-    extern pbr::core::PBRKeyboardInputCallbackFun keyInputCB;
+    extern pbr::util::PBRKeyboardInputCallbackFun keyInputCB;
 
     /**
      * Initializes the PBR core engine
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS pbrInit(void);
+    pbr::util::PBR_STATUS pbrInit(void);
 
     /**
      * Starts the main application
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS pbrExecute(void);
+    pbr::util::PBR_STATUS pbrExecute(void);
 
     /**
      * Cleans allocated resources
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS pbrClean(void);
+    pbr::util::PBR_STATUS pbrClean(void);
 
     /**
      * Sets the width and height of the application window
@@ -59,35 +58,54 @@ namespace pbr {
      * @param _height The desired height
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS pbrSize(uint32_t _width, uint32_t _height);
+    pbr::util::PBR_STATUS pbrSize(uint32_t _width, uint32_t _height);
 
     /**
      * Sets the title of the application window
      * @param _title The desired title
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS pbrTitle(const char* _title);
+    pbr::util::PBR_STATUS pbrTitle(const char* _title);
 
     /**
      * Sets the image of the main loading screen
      * @param _image The path to the image on disk
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS pbrLoadingScreenImage(const char* _image);
+    pbr::util::PBR_STATUS pbrLoadingScreenImage(const char* _image);
 
     /**
      * Sets the icon of the application
      * @param _icon The path to the icon on disk
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS pbrApplicationIcon(const char* _icon);
+    pbr::util::PBR_STATUS pbrApplicationIcon(const char* _icon);
+
+    /**
+     * Sets the display mode of the application
+     * @param _mode The display mode
+     * @return Returns 0 or bigger on success, returns a negative number on failure
+     */
+    pbr::util::PBR_STATUS pbrDisplayMode(pbr::util::PBR_DISPLAY_MODE _mode);
 
     /**
      * Sets the keyboard input callback function
      * @param _cbfun The callback function
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    PBR_STATUS pbrKeyboardInputCallback(pbr::core::PBRKeyboardInputCallbackFun _cbfun);
+    pbr::util::PBR_STATUS pbrKeyboardInputCallback(pbr::util::PBRKeyboardInputCallbackFun _cbfun);
+
+    /**
+     * Queries the current width of the window
+     * @return Returns the current width of the GLFWwindow
+     */
+    uint32_t pbrGetCurrentWidth(void);
+
+    /**
+     * Queries the current height of the window
+     * @return Returns the current height of the GLFWwindow
+     */
+    uint32_t pbrGetCurrentHeight(void);
 
 }
 
