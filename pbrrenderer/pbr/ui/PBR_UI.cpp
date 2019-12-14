@@ -8,8 +8,6 @@
 
 #include "PBR_UI.hpp"
 
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
 
 namespace pbr {
 
@@ -73,14 +71,14 @@ namespace pbr {
             glfwMakeContextCurrent(pbr::ui::window);
             glfwSwapInterval(0);
             GLFWimage windowIcon[1];
-            windowIcon[0].pixels = stbi_load(
+            windowIcon[0].pixels = pbr::util::loadSTBI(
                 pbr::APPLICATION_ICON,
                 &windowIcon[0].width,
                 &windowIcon[0].height,
                 0,
-                STBI_rgb_alpha);
+                4);
             glfwSetWindowIcon(pbr::ui::window, 1, windowIcon);
-            stbi_image_free(windowIcon[0].pixels);
+            pbr::util::freeSTBI(windowIcon[0].pixels);
             glfwSetInputMode(pbr::ui::window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
             glfwSetFramebufferSizeCallback(pbr::ui::window, pbr::core::framebufferResizeCB);
             glfwSetCursorPosCallback(pbr::ui::window, pbr::core::mouseMoveCB);
