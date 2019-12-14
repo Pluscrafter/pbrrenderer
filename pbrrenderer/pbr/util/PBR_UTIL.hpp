@@ -21,7 +21,7 @@ namespace pbr {
     namespace util {
 
         /**
-         * Defines a wrapper function to load an image using sdb_image.h, 
+         * Defines a wrapper function to load an image using stb_image.h, 
          * because said file can only be included in *one* .cpp-source file
          * @param _path The path to the image on disk
          * @param _x The width of the image
@@ -43,7 +43,7 @@ namespace pbr {
             int         _req_comp);
 
         /**
-         * Defines a wrapper function to free a loaded image using sdb_image.h, 
+         * Defines a wrapper function to free a loaded image using stb_image.h, 
          * because said file can only be included in *one* .cpp-source file
          * @param _pixels The array of pixels as an unsigned char pointer
          * @return Returns 0 or bigger on success, returns a negative number on failure

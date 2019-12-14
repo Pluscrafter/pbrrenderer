@@ -20,7 +20,7 @@ void keyboardInputCallback(GLFWwindow* _window) {
 int main() {
     pbr::pbrInit();
     pbr::pbrTitle("PBR by D3PSI");
-    pbr::pbrSize(1920, 1080);
+    pbr::pbrSize(1280, 720);
     pbr::pbrLoadingScreenImage("res/images/lion.png");
     pbr::pbrApplicationIcon("res/images/lion-cropped.png");
     pbr::pbrDisplayMode(pbr::util::PBR_WINDOWED);
