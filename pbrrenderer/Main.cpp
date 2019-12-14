@@ -14,5 +14,5 @@
  */
 int main() {
     pbr::init();
-    return 0;
+    return pbr::execute();
 }

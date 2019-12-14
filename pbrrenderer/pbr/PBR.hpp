@@ -38,10 +38,45 @@ namespace pbr {
     PBR_STATUS init(void);
 
     /**
+     * Starts the main application
+     * @return Returns 0 or bigger on success, returns a negative number on failure
+     */
+    PBR_STATUS execute(void);
+
+    /**
      * Cleans allocated resources
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
     PBR_STATUS clean(void);
+
+    /**
+     * Sets the width and height of the application window
+     * @param _width The desired width
+     * @param _height The desired height
+     * @return Returns 0 or bigger on success, returns a negative number on failure
+     */
+    PBR_STATUS size(uint32_t _width, uint32_t _height);
+
+    /**
+     * Sets the title of the application window
+     * @param _title The desired title
+     * @return Returns 0 or bigger on success, returns a negative number on failure
+     */
+    PBR_STATUS title(const char* _title);
+
+    /**
+     * Sets the image of the main loading screen
+     * @param _image The path to the image on disk
+     * @return Returns 0 or bigger on success, returns a negative number on failure
+     */
+    PBR_STATUS loadingScreenImage(const char* _image);
+
+    /**
+     * Sets the icon of the application
+     * @param _icon The path to the icon on disk
+     * @return Returns 0 or bigger on success, returns a negative number on failure
+     */
+    PBR_STATUS applicationIcon(void);
 
 }
 

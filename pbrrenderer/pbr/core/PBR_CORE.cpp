@@ -27,6 +27,11 @@ namespace pbr {
             return PBR_OK;
         }
 
+        PBR_STATUS execute() {
+            pbr::core::loop();
+            return PBR_OK;
+        }
+
         PBR_STATUS initGLFW() {
             glfwInit();
             glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -105,7 +110,7 @@ namespace pbr {
 
         PBR_STATUS loop() {
             while(!glfwWindowShouldClose(pbr::core::window)) {
-                std::cout << "This seems to be working.\n";
+                keyInput();
                 glfwSwapBuffers(pbr::core::window);
                 glfwPollEvents();
             }
@@ -116,6 +121,12 @@ namespace pbr {
         PBR_STATUS clean() {
             return PBR_OK;
         } 
+
+        PBR_STATUS keyInput() {
+            if (glfwGetKey(pbr::core::window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+                glfwSetWindowShouldClose(pbr::core::window, GLFW_TRUE);
+            return PBR_OK;
+        }
 
         void framebufferResizeCallback(GLFWwindow* _window, int _width, int _height) {
         }

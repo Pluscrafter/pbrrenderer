@@ -34,6 +34,12 @@ namespace pbr {
         PBR_STATUS init(void);
 
         /**
+         * Starts the main application
+         * @return Returns 0 or bigger on success, returns a negative number on failure
+         */
+        PBR_STATUS execute(void);
+
+        /**
          * Initializes the windowing library
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
@@ -62,6 +68,12 @@ namespace pbr {
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
         PBR_STATUS clean(void);
+
+        /**
+         * Processes keyboard inputs
+         * @return Returns 0 or bigger on success, returns a negative number on failure
+         */
+        PBR_STATUS keyInput(void);
 
         /**
          * Callback function for window resize events through GLFW

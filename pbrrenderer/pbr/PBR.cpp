@@ -30,17 +30,17 @@ namespace pbr {
         return PBR_OK;
     }
 
+    PBR_STATUS execute() {
+        return pbr::core::execute();
+    }
+
     PBR_STATUS clean() {
         pbr::core::clean();
         return PBR_OK;
     }
 
-    PBR_STATUS width(uint32_t _width) {
+    PBR_STATUS size(uint32_t _width, uint32_t _height) {
         WIDTH = _width;
-        return PBR_OK;
-    }
-
-    PBR_STATUS height(uint32_t _height) {
         HEIGHT = _height;
         return PBR_OK;
     }
