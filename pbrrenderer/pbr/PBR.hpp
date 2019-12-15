@@ -14,6 +14,11 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <SDL.h>
+#include <SDL_image.h>
+#define GLM_FORCE_RADIANS
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include "core/PBR_CORE.hpp"
 #include "ui/PBR_UI.hpp"
 #include "util/PBR_UTIL.hpp"
@@ -31,6 +36,10 @@ namespace pbr {
     extern const char* LOADING_SCREEN_IMAGE;
     extern const char* APPLICATION_ICON;
     extern pbr::util::PBR_DISPLAY_MODE DISPLAY_MODE;
+
+    extern float YAW;
+    extern float PITCH;
+    extern float ROLL;
 
     extern pbr::util::PBRKeyboardInputCallbackFun keyInputCB;
 

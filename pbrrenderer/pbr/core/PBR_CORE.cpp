@@ -7,6 +7,8 @@
 #define PBR_CORE_CPP
 
 #include "PBR_CORE.hpp"
+#include "PBRCameraBase.hpp"
+
 
 namespace pbr {
 
@@ -14,6 +16,8 @@ namespace pbr {
 
         uint32_t width = pbr::WIDTH;
         uint32_t height = pbr::HEIGHT;
+
+        pbr::core::PBRCameraBase* camera = nullptr;
 
         pbr::util::PBR_STATUS init() {
             pbr::ui::initLoadingScreen();
@@ -29,9 +33,8 @@ namespace pbr {
         }
 
         pbr::util::PBR_STATUS initOpenGL() {
-            if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
+            if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
                 throw std::runtime_error("Failed to gather function pointers for OpenGL through GLAD");
-            }
             glViewport(0, 0, pbr::WIDTH, pbr::HEIGHT);
             pbr::ui::loadingScreen->quit();
             glfwShowWindow(pbr::ui::window);

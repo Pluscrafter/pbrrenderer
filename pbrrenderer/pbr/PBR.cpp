@@ -13,6 +13,7 @@
 #define PBR_CPP
 
 #include "PBR.hpp"
+#include "core/PBRCameraBase.hpp"
 
 
 namespace pbr {
@@ -24,6 +25,10 @@ namespace pbr {
     const char* LOADING_SCREEN_IMAGE = "res/images/lion.png";
     const char* APPLICATION_ICON = "res/images/lion_cropped.png";
     pbr::util::PBR_DISPLAY_MODE DISPLAY_MODE = pbr::util::PBR_WINDOWED;
+
+    float YAW = 0.0f;
+    float PITCH = 0.0f;
+    float ROLL = 0.0f;
 
     pbr::util::PBRKeyboardInputCallbackFun keyInputCB;
 
@@ -78,6 +83,18 @@ namespace pbr {
 
     uint32_t pbrGetCurrentHeight() {
         return pbr::core::height;
+    }
+
+    float pbrGetCurrentYaw() {
+        return pbr::core::camera->yaw();
+    }
+    
+    float pbrGetCurrentPitch() {
+        return pbr::core::camera->pitch();
+    }
+
+    float pbrGetCurrentRoll() {
+        return pbr::core::camera->roll();
     }
 
 }
