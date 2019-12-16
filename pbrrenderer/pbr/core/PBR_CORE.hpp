@@ -9,6 +9,7 @@
 #include "../PBR.hpp"
 #include "../ui/PBR_UI.hpp"
 #include "../util/PBR_UTIL.hpp"
+#include "../util/flags/PBR_UTIL_FLAGS.hpp"
 
 #include <iostream>
 
@@ -27,49 +28,61 @@ namespace pbr {
          * Initializes the PBR core engine
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        pbr::util::PBR_STATUS init(void);
+        pbr::util::flags::PBR_STATUS init(void);
 
         /**
          * Starts the main application
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        pbr::util::PBR_STATUS execute(void);
+        pbr::util::flags::PBR_STATUS execute(void);
 
         /**
          * Initializes everything OpenGL-related
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        pbr::util::PBR_STATUS initOpenGL(void);
+        pbr::util::flags::PBR_STATUS initOpenGL(void);
 
         /**
          * Contains the main loop
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        pbr::util::PBR_STATUS loop(void);
+        pbr::util::flags::PBR_STATUS loop(void);
 
         /**
          * Cleans all allocated resources and handles shutdown operations
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        pbr::util::PBR_STATUS clean(void);
+        pbr::util::flags::PBR_STATUS clean(void);
 
         /**
          * Processes keyboard inputs
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        pbr::util::PBR_STATUS keyInput(void);
+        pbr::util::flags::PBR_STATUS keyInput(void);
 
         /**
          * Coordinates one-time setup steps
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        pbr::util::PBR_STATUS setup(void);
+        pbr::util::flags::PBR_STATUS setup(void);
 
         /**
          * Coordinates main rendering operations
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        pbr::util::PBR_STATUS render(void);
+        pbr::util::flags::PBR_STATUS render(void);
+
+        /**
+         * Initializes shaders
+         * @return Returns 0 or bigger on success, returns a negative number on failure
+         */
+        pbr::util::flags::PBR_STATUS setupShaders(void);
+
+        /**
+         * Initializes buffers
+         * @return Returns 0 or bigger on success, returns a negative number on failure
+         */
+        pbr::util::flags::PBR_STATUS setupBuffers(void);
 
         /**
          * Callback function for window resize events through GLFW

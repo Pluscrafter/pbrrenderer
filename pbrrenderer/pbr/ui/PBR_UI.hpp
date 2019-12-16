@@ -25,19 +25,19 @@ namespace pbr {
          * Starts the main loading screen
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        pbr::util::PBR_STATUS initLoadingScreen(void);
+        pbr::util::flags::PBR_STATUS initLoadingScreen(void);
 
         /**
          * Initializes the GLFW windowing library
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        pbr::util::PBR_STATUS initGLFW(void);
+        pbr::util::flags::PBR_STATUS initGLFW(void);
 
         /**
          * Starts the main application window through GLFW
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        pbr::util::PBR_STATUS initGLFWWindow(void);
+        pbr::util::flags::PBR_STATUS initGLFWWindow(void);
 
     }
 

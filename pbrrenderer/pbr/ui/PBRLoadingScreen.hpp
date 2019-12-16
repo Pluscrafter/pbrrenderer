@@ -6,7 +6,7 @@
 #ifndef PBR_LOADING_SCREEN_HPP
 #define PBR_LOADING_SCREEN_HPP
 
-#include "../util/PBR_STATUS.hpp"
+#include "../util/flags/PBR_UTIL_FLAGS.hpp"
 
 #include <SDL.h>
 #include <SDL_image.h>
@@ -33,7 +33,7 @@ namespace pbr {
              * Closes the loading screen
              * @return Returns 0 or bigger on success, returns a negative number on failure
              */
-            pbr::util::PBR_STATUS quit(void);
+            pbr::util::flags::PBR_STATUS quit(void);
 
         private:
 
@@ -52,13 +52,13 @@ namespace pbr {
              * Contains the event loop for the loading screen
              * @return Returns 0 or bigger on success, returns a negative number on failure 
              */
-            pbr::util::PBR_STATUS loop(void);
+            pbr::util::flags::PBR_STATUS loop(void);
 
             /**
              * Cleans all allocated resources of the loading screen
              * @return Returns 0 or bigger on success, returns a negative number on failure
              */
-            pbr::util::PBR_STATUS clean(void);
+            pbr::util::flags::PBR_STATUS clean(void);
 
         };
 

@@ -35,7 +35,7 @@ namespace pbr {
 
     extern const char* LOADING_SCREEN_IMAGE;
     extern const char* APPLICATION_ICON;
-    extern pbr::util::PBR_DISPLAY_MODE DISPLAY_MODE;
+    extern pbr::util::flags::PBR_DISPLAY_MODE DISPLAY_MODE;
 
     extern float YAW;
     extern float PITCH;
@@ -47,19 +47,19 @@ namespace pbr {
      * Initializes the PBR core engine
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    pbr::util::PBR_STATUS pbrInit(void);
+    pbr::util::flags::PBR_STATUS pbrInit(void);
 
     /**
      * Starts the main application
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    pbr::util::PBR_STATUS pbrExecute(void);
+    pbr::util::flags::PBR_STATUS pbrExecute(void);
 
     /**
      * Cleans allocated resources
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    pbr::util::PBR_STATUS pbrClean(void);
+    pbr::util::flags::PBR_STATUS pbrClean(void);
 
     /**
      * Sets the width and height of the application window
@@ -67,42 +67,42 @@ namespace pbr {
      * @param _height The desired height
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    pbr::util::PBR_STATUS pbrSize(uint32_t _width, uint32_t _height);
+    pbr::util::flags::PBR_STATUS pbrSize(uint32_t _width, uint32_t _height);
 
     /**
      * Sets the title of the application window
      * @param _title The desired title
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    pbr::util::PBR_STATUS pbrTitle(const char* _title);
+    pbr::util::flags::PBR_STATUS pbrTitle(const char* _title);
 
     /**
      * Sets the image of the main loading screen
      * @param _image The path to the image on disk
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    pbr::util::PBR_STATUS pbrLoadingScreenImage(const char* _image);
+    pbr::util::flags::PBR_STATUS pbrLoadingScreenImage(const char* _image);
 
     /**
      * Sets the icon of the application
      * @param _icon The path to the icon on disk
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    pbr::util::PBR_STATUS pbrApplicationIcon(const char* _icon);
+    pbr::util::flags::PBR_STATUS pbrApplicationIcon(const char* _icon);
 
     /**
      * Sets the display mode of the application
      * @param _mode The display mode
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    pbr::util::PBR_STATUS pbrDisplayMode(pbr::util::PBR_DISPLAY_MODE _mode);
+    pbr::util::flags::PBR_STATUS pbrDisplayMode(pbr::util::flags::PBR_DISPLAY_MODE _mode);
 
     /**
      * Sets the keyboard input callback function
      * @param _cbfun The callback function
      * @return Returns 0 or bigger on success, returns a negative number on failure
      */
-    pbr::util::PBR_STATUS pbrKeyboardInputCallback(pbr::util::PBRKeyboardInputCallbackFun _cbfun);
+    pbr::util::flags::PBR_STATUS pbrKeyboardInputCallback(pbr::util::PBRKeyboardInputCallbackFun _cbfun);
 
     /**
      * Queries the current width of the window

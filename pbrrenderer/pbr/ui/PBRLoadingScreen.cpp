@@ -43,7 +43,7 @@ pbr::ui::PBRLoadingScreen::PBRLoadingScreen(const char* _image) {
     t0.detach();
 }
 
-pbr::util::PBR_STATUS pbr::ui::PBRLoadingScreen::loop() {
+pbr::util::flags::PBR_STATUS pbr::ui::PBRLoadingScreen::loop() {
     SDL_Event e;
     while(!closeVar) {
         while(SDL_PollEvent(&e)) {
@@ -60,18 +60,18 @@ pbr::util::PBR_STATUS pbr::ui::PBRLoadingScreen::loop() {
             nullptr);
         SDL_RenderPresent(renderer);
     }
-    return pbr::util::PBR_OK;
+    return pbr::util::flags::PBR_OK;
 }
 
-pbr::util::PBR_STATUS pbr::ui::PBRLoadingScreen::quit() {
+pbr::util::flags::PBR_STATUS pbr::ui::PBRLoadingScreen::quit() {
     this->closeMutex.lock();
     this->closeVar = true;
     this->closeMutex.unlock();
     this->clean();
-    return pbr::util::PBR_OK;
+    return pbr::util::flags::PBR_OK;
 }
 
-pbr::util::PBR_STATUS pbr::ui::PBRLoadingScreen::clean() {
+pbr::util::flags::PBR_STATUS pbr::ui::PBRLoadingScreen::clean() {
     SDL_FreeSurface(imageSurface);
     imageSurface = nullptr;
     SDL_DestroyTexture(background);
@@ -82,7 +82,7 @@ pbr::util::PBR_STATUS pbr::ui::PBRLoadingScreen::clean() {
     window = nullptr;
     IMG_Quit();
     SDL_Quit();
-    return pbr::util::PBR_OK;
+    return pbr::util::flags::PBR_OK;
 }
 
 #endif      // PBR_LOADING_SCREEN_CPP

@@ -7,10 +7,10 @@
 #define PBT_UTIL_HPP
 
 #include "../PBR.hpp"
-#include "PBR_DISPLAY_MODE.hpp"
-#include "PBR_STATUS.hpp"
 #include "PBRCallbackFunctions.hpp"
 #include "PBRMakros.hpp"
+#include "io/PBR_UTIL_IO.hpp"
+#include "flags/PBR_UTIL_FLAGS.hpp"
 
 
 namespace pbr {
@@ -48,7 +48,7 @@ namespace pbr {
          * @param _pixels The array of pixels as an unsigned char pointer
          * @return Returns 0 or bigger on success, returns a negative number on failure
          */
-        pbr::util::PBR_STATUS freeSTBI(unsigned char* _pixels);
+        pbr::util::flags::PBR_STATUS freeSTBI(unsigned char* _pixels);
 
     }
 

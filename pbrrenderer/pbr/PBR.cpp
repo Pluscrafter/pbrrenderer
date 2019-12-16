@@ -24,7 +24,7 @@ namespace pbr {
 
     const char* LOADING_SCREEN_IMAGE = "res/images/lion.png";
     const char* APPLICATION_ICON = "res/images/lion_cropped.png";
-    pbr::util::PBR_DISPLAY_MODE DISPLAY_MODE = pbr::util::PBR_WINDOWED;
+    pbr::util::flags::PBR_DISPLAY_MODE DISPLAY_MODE = pbr::util::flags::PBR_WINDOWED;
 
     float YAW = 0.0f;
     float PITCH = 0.0f;
@@ -32,49 +32,49 @@ namespace pbr {
 
     pbr::util::PBRKeyboardInputCallbackFun keyInputCB;
 
-    pbr::util::PBR_STATUS pbrInit() {
+    pbr::util::flags::PBR_STATUS pbrInit() {
         pbr::core::init();
-        return pbr::util::PBR_OK;
+        return pbr::util::flags::PBR_OK;
     }
 
-    pbr::util::PBR_STATUS pbrExecute() {
+    pbr::util::flags::PBR_STATUS pbrExecute() {
         return pbr::core::execute();
     }
 
-    pbr::util::PBR_STATUS pbrClean() {
+    pbr::util::flags::PBR_STATUS pbrClean() {
         pbr::core::clean();
-        return pbr::util::PBR_OK;
+        return pbr::util::flags::PBR_OK;
     }
 
-    pbr::util::PBR_STATUS pbrSize(uint32_t _width, uint32_t _height) {
+    pbr::util::flags::PBR_STATUS pbrSize(uint32_t _width, uint32_t _height) {
         WIDTH = _width;
         HEIGHT = _height;
-        return pbr::util::PBR_OK;
+        return pbr::util::flags::PBR_OK;
     }
 
-    pbr::util::PBR_STATUS pbrTitle(const char* _title) {
+    pbr::util::flags::PBR_STATUS pbrTitle(const char* _title) {
         TITLE = _title;
-        return pbr::util::PBR_OK;
+        return pbr::util::flags::PBR_OK;
     }
 
-    pbr::util::PBR_STATUS pbrLoadingScreenImage(const char* _image) {
+    pbr::util::flags::PBR_STATUS pbrLoadingScreenImage(const char* _image) {
         LOADING_SCREEN_IMAGE = _image;
-        return pbr::util::PBR_OK;
+        return pbr::util::flags::PBR_OK;
     }
 
-    pbr::util::PBR_STATUS pbrApplicationIcon(const char* _icon) {
+    pbr::util::flags::PBR_STATUS pbrApplicationIcon(const char* _icon) {
         APPLICATION_ICON = _icon;
-        return pbr::util::PBR_OK;
+        return pbr::util::flags::PBR_OK;
     }
 
-    pbr::util::PBR_STATUS pbrDisplayMode(pbr::util::PBR_DISPLAY_MODE _mode) {
+    pbr::util::flags::PBR_STATUS pbrDisplayMode(pbr::util::flags::PBR_DISPLAY_MODE _mode) {
         pbr::DISPLAY_MODE = _mode;
-        return pbr::util::PBR_OK;
+        return pbr::util::flags::PBR_OK;
     }
 
-    pbr::util::PBR_STATUS pbrKeyboardInputCallback(pbr::util::PBRKeyboardInputCallbackFun _cbfun) {
+    pbr::util::flags::PBR_STATUS pbrKeyboardInputCallback(pbr::util::PBRKeyboardInputCallbackFun _cbfun) {
         keyInputCB = _cbfun;
-        return pbr::util::PBR_OK;
+        return pbr::util::flags::PBR_OK;
     }
 
     uint32_t pbrGetCurrentWidth() {

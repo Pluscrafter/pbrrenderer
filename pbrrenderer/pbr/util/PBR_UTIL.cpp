@@ -30,9 +30,9 @@ namespace pbr {
                 _req_comp));
         }
 
-        pbr::util::PBR_STATUS freeSTBI(unsigned char* _pixels) {
+        pbr::util::flags::PBR_STATUS freeSTBI(unsigned char* _pixels) {
             stbi_image_free(_pixels);
-            return PBR_OK;
+            return pbr::util::flags::PBR_OK;
         }
 
     }

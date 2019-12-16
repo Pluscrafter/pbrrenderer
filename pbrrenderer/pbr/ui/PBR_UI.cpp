@@ -17,12 +17,12 @@ namespace pbr {
         GLFWwindow* window = nullptr;
         GLFWmonitor* monitor = nullptr;
 
-        pbr::util::PBR_STATUS initLoadingScreen() {
+        pbr::util::flags::PBR_STATUS initLoadingScreen() {
             pbr::ui::loadingScreen = new pbr::ui::PBRLoadingScreen(LOADING_SCREEN_IMAGE);
-            return pbr::util::PBR_OK;
+            return pbr::util::flags::PBR_OK;
         }
 
-        pbr::util::PBR_STATUS initGLFW() {
+        pbr::util::flags::PBR_STATUS initGLFW() {
             glfwInit();
             glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
             glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -30,13 +30,13 @@ namespace pbr {
             glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
             glfwWindowHint(GLFW_FOCUSED, GLFW_TRUE);
             glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-            return pbr::util::PBR_OK;
+            return pbr::util::flags::PBR_OK;
         }
 
-        pbr::util::PBR_STATUS initGLFWWindow() {
+        pbr::util::flags::PBR_STATUS initGLFWWindow() {
             pbr::ui::monitor = glfwGetPrimaryMonitor();
             const GLFWvidmode* mode = glfwGetVideoMode(pbr::ui::monitor);
-            if(pbr::DISPLAY_MODE == pbr::util::PBR_WINDOWED) {
+            if(pbr::DISPLAY_MODE == pbr::util::flags::PBR_WINDOWED) {
                 pbr::ui::window = glfwCreateWindow(
                     pbr::WIDTH,
                     pbr::HEIGHT,
@@ -48,7 +48,7 @@ namespace pbr {
                     mode->width / 2 - pbr::WIDTH / 2,
                     mode->height / 2 - pbr::HEIGHT / 2);
             }
-            else if(pbr::DISPLAY_MODE == pbr::util::PBR_FULLSCREEN) {
+            else if(pbr::DISPLAY_MODE == pbr::util::flags::PBR_FULLSCREEN) {
                 glfwWindowHint(GLFW_RED_BITS, mode->redBits);
                 glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
                 glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
@@ -60,7 +60,7 @@ namespace pbr {
                     pbr::ui::monitor,
                     nullptr);
             }
-            else if(pbr::DISPLAY_MODE == pbr::util::PBR_BORDERLESS) {
+            else if(pbr::DISPLAY_MODE == pbr::util::flags::PBR_BORDERLESS) {
                 pbr::ui::window = glfwCreateWindow(
                     mode->width,
                     mode->height,
@@ -83,7 +83,7 @@ namespace pbr {
             glfwSetFramebufferSizeCallback(pbr::ui::window, pbr::core::framebufferResizeCB);
             glfwSetCursorPosCallback(pbr::ui::window, pbr::core::mouseMoveCB);
             glfwSetScrollCallback(pbr::ui::window, pbr::core::mouseScrollCB);
-            return pbr::util::PBR_OK;
+            return pbr::util::flags::PBR_OK;
         }
 
     }
