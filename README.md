@@ -49,4 +49,6 @@ Then just simply make a copy of 'libassimp.so.3' or any other version and rename
     
 Like this.
 
+Special thanks to github.com/pluscrafter for taking part in essential development of this project.
+
 Thanks for the interest in the project!
