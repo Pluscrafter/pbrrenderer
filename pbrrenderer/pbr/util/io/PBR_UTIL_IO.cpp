@@ -16,13 +16,21 @@ namespace pbr {
 
         namespace io {
 
-            const char* read(const char* _path) {
-                std::ifstream stream;
-                stream.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+            std::string read(const char* _path) {
+                std::ifstream fileStream;
+                std::string buf;
+                fileStream.exceptions(std::ifstream::failbit | std::ifstream::badbit);
                 try {
-
+                    fileStream.open(_path);
+                    std::stringstream contentStream;
+                    contentStream << fileStream.rdbuf();
+                    fileStream.close();
+                    buf = contentStream.str().c_str();
+                    return buf;
                 }
-                catch (std::ifstream::failure _e) {
+                catch (std::ifstream::failure& _e) {
+                    //throw std::runtime_error(std::strcat("Failed to read file from ", _path));
+                    return nullptr;
                 }
             }
 

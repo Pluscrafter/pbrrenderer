@@ -27,8 +27,10 @@ namespace pbr {
         };
 
         unsigned int VBO;
+        unsigned int VAO;
         unsigned int vs;
         unsigned int fs;
+        unsigned int shaderID;
 
         pbr::util::flags::PBR_STATUS init() {
             pbr::ui::initLoadingScreen();
@@ -49,12 +51,14 @@ namespace pbr {
             glViewport(0, 0, pbr::WIDTH, pbr::HEIGHT);
             pbr::ui::loadingScreen->quit();
             glfwShowWindow(pbr::ui::window);
+            glfwMakeContextCurrent(pbr::ui::window);
             glfwFocusWindow(pbr::ui::window);
             delete pbr::ui::loadingScreen;
             return pbr::util::flags::PBR_OK;
         }
 
         pbr::util::flags::PBR_STATUS loop() {
+            pbr::core::setup();
             while(!glfwWindowShouldClose(pbr::ui::window)) {
                 keyInput();
                 render();
@@ -101,23 +105,65 @@ namespace pbr {
         pbr::util::flags::PBR_STATUS render() {
             glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            glUseProgram(shaderID);
+            glBindVertexArray(VAO);
+            glDrawArrays(GL_TRIANGLES, 0, 3);
+
             return pbr::util::flags::PBR_OK;
         }
 
         pbr::util::flags::PBR_STATUS setupShaders() {
-            /*vs = glCreateShader(GL_VERTEX_SHADER);
-            fs = glCreateShader(GL_FRAGMENT_SHADER);
-            glShaderSource(vs, 1, &vssource, nullptr);
+            const char* vShader = pbr::util::io::read("res/shaders/main/shader.vert").c_str();
+            const char* fShader = pbr::util::io::read("res/shaders/main/shader.frag").c_str();
+            vs = glCreateShader(GL_VERTEX_SHADER);
+            glShaderSource(vs, 1, &vShader, nullptr);
             glCompileShader(vs);
-            glShaderSource(fs, 1, &fssource, nullptr);
-            glCompileShader(fs);*/
+            int succ;
+            char infoLog[1024];
+            glGetShaderiv(vs, GL_COMPILE_STATUS, &succ);
+            if(!succ) {
+                glGetShaderInfoLog(vs, 1024, nullptr, infoLog);
+                std::cerr << "Error compiling vertex shader:\n" << infoLog << std::endl;
+            }
+            fs = glCreateShader(GL_FRAGMENT_SHADER);
+            glShaderSource(fs, 1, &fShader, nullptr);
+            glCompileShader(fs);
+            glGetShaderiv(fs, GL_COMPILE_STATUS, &succ);
+            if(!succ) {
+                glGetShaderInfoLog(fs, 1024, nullptr, infoLog);
+                std::cerr << "Error compiling fragment shader:\n" << infoLog << std::endl;
+            }
+            shaderID = glCreateProgram();
+            glAttachShader(shaderID, vs);
+            glAttachShader(shaderID, fs);
+            glLinkProgram(shaderID);
+            glGetProgramiv(shaderID, GL_LINK_STATUS, &succ);
+            if(!succ) {
+                glGetProgramInfoLog(shaderID, 1024, nullptr, infoLog);
+                std::cerr << "Error linking shader program:\n" << infoLog << std::endl;
+            }
+            glDeleteShader(vs);
+            glDeleteShader(fs);
             return pbr::util::flags::PBR_OK;
         }
 
         pbr::util::flags::PBR_STATUS setupBuffers() {
+            glGenVertexArrays(1, &VAO);
             glGenBuffers(1, &VBO);
+            glBindVertexArray(VAO);
             glBindBuffer(GL_ARRAY_BUFFER, VBO);
             glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+            glVertexAttribPointer(
+                0, 
+                3, 
+                GL_FLOAT, 
+                GL_FALSE, 
+                3 * sizeof(float), 
+                (void*)0);
+            glEnableVertexAttribArray(0);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            glBindVertexArray(0);
             return pbr::util::flags::PBR_OK;
         }
 

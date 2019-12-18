@@ -6,7 +6,9 @@
 #ifndef PBR_UTIL_IO_HPP
 #define PBR_UTIL_IO_HPP
 
+#include <string>
 #include <fstream>
+#include <sstream>
 
 
 namespace pbr {
@@ -18,9 +20,9 @@ namespace pbr {
             /**
              * Reads a file from disk
              * @param _path The path to the file on disk
-             * @return Returns a const char* to the read buffer
+             * @return Returns std::string as the read buffer
              */
-            const char* read(const char* _path);
+            std::string read(const char* _path);
 
         }
 
