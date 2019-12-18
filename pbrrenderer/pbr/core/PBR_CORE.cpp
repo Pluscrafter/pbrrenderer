@@ -32,6 +32,9 @@ namespace pbr {
         unsigned int fs;
         unsigned int shaderID;
 
+        const char* vShaderSource;
+        const char* fShaderSource;
+
         pbr::util::flags::PBR_STATUS init() {
             pbr::ui::initLoadingScreen();
             return pbr::util::flags::PBR_OK;
@@ -114,10 +117,12 @@ namespace pbr {
         }
 
         pbr::util::flags::PBR_STATUS setupShaders() {
-            const char* vShader = pbr::util::io::read("res/shaders/main/shader.vert").c_str();
-            const char* fShader = pbr::util::io::read("res/shaders/main/shader.frag").c_str();
+            std::string vShader = pbr::util::io::read("res/shaders/main/shader.vert");
+            std::string fShader = pbr::util::io::read("res/shaders/main/shader.frag");
+            vShaderSource = vShader.c_str();
+            fShaderSource = fShader.c_str();
             vs = glCreateShader(GL_VERTEX_SHADER);
-            glShaderSource(vs, 1, &vShader, nullptr);
+            glShaderSource(vs, 1, &vShaderSource, nullptr);
             glCompileShader(vs);
             int succ;
             char infoLog[1024];
@@ -127,7 +132,7 @@ namespace pbr {
                 std::cerr << "Error compiling vertex shader:\n" << infoLog << std::endl;
             }
             fs = glCreateShader(GL_FRAGMENT_SHADER);
-            glShaderSource(fs, 1, &fShader, nullptr);
+            glShaderSource(fs, 1, &fShaderSource, nullptr);
             glCompileShader(fs);
             glGetShaderiv(fs, GL_COMPILE_STATUS, &succ);
             if(!succ) {
