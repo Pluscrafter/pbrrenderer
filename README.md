@@ -34,4 +34,19 @@ Just simply delete the project folder from disk:
 
     rm -r pbrrenderer
 
+## Troubleshoot
+
+### Linux
+
+#### Fedora
+If you are faceing the problem that 'libassimp.so.5' isn't found anywhere.
+
+    ./pbr: error while loading shared libraries: libassimp.so.5: cannot open shared object file: No such file or directory
+
+Then just simply make a copy of 'libassimp.so.3' or any other version and rename it to 'libassimp.so.5' in the specific folder.
+    
+    sudo cp /usr/lib64/libassimp.so.3 /usr/lib64/libassimp.so.5
+    
+Like this.
+
 Thanks for the interest in the project!
