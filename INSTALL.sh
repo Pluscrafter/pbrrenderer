@@ -40,21 +40,21 @@ else
     echo "Trying to install dependencies for ${distroname} using ${pkgman} on ${session}."
     status=-1
     if [[ ${pkgman} == yum ]]; then
-        yum install cmake make pkgconf-pkg-config gcc g++ glm-devel glfw glfw-devel assimp assimp-devel SDL2 SDL2-devel SDL2_image SDL2_image-devel
+        yum -y install cmake make pkgconf-pkg-config gcc g++ glm-devel glfw glfw-devel assimp assimp-devel SDL2 SDL2-devel SDL2_image SDL2_image-devel
         if [[ $? -ne 0 ]]; then
             status=1
         else
             status=0
         fi
     elif [[ ${pkgman} == pacman ]]; then
-        pacman -Sy cmake make pkg-config gcc gdb glm glfw-${session} assimp sdl2 sdl2_image
+        pacman -Sy --noconfirm cmake make pkg-config gcc gdb glm glfw-${session} assimp sdl2 sdl2_image
         if [[ $? -ne 0 ]]; then
             status=1
         else
             status=0
         fi
     elif [[ ${pkgman} == apt ]]; then
-        apt install make pkg-config gcc g++ gdb libglfw3 libglfw3-dev libglm-dev libassimp-dev assimp-utils libegl1-mesa-dev libsdl2-2.0-0 libsdl2-dev libsdl2-image-2.0-0 libsdl2-image-dev
+        apt-get -y --fix-missing install make pkg-config gcc g++ gdb libglfw3 libglfw3-dev libglm-dev libassimp-dev assimp-utils libegl1-mesa-dev libsdl2-2.0-0 libsdl2-dev libsdl2-image-2.0-0 libsdl2-image-dev
         if [[ $? -ne 0 ]]; then
             status=1
         else
@@ -67,7 +67,7 @@ else
     if [[ status==0 ]]; then
         echo "Successfully installed dependencies for your system. Building project..."
         make
-        echo "Built the project. Execute it by running './RUN.sh', 'make run' or 'make debug'. Enjoy!"
+        echo "Built the project. Execute it by running './pbr'. Enjoy!"
         exit 0
     else
         exit 1

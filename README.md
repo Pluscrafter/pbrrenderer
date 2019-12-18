@@ -14,10 +14,9 @@ The repository comes with a versatile install script. It offers support for a wi
 
     git clone https://github.com/D3PSI/pbrrenderer.git
     cd pbrrenderer/
-    sudo ./INSTALL.sh
+    make install
 
-Then, run or debug the application with `./RUN.sh` respectively `./DEBUG.sh`. You can also execute the executable 
-yourself after the automatic build the installer executes by typing `./pbr` in the project root directory. 
+Then, run the application with `./pbr` in the project root directory.
 If you want to recompile and automatically run the software, run either `make run` or `make debug`.
 
 ### Windows
