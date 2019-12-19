@@ -17,12 +17,12 @@ namespace pbr {
             /**
              * Default constructor
              */
-            PBRShaderProgramHandler(void) = default;
+            PBRShaderProgramHandler(void);
 
             /**
              * Default destructor
              */
-            ~PBRShaderProgramHandler(void) = default;
+            ~PBRShaderProgramHandler(void);
 
         private:
 

@@ -20,15 +20,15 @@ pbrrenderer-base: $(SOURCES)
 all: pbrrenderer-base
 
 install:
-	sudo ./INSTALL.sh
+	@sudo ./INSTALL.sh
 
 run: pbrrenderer-base
-	cp "bin/Linux/x64/pbr" "pbr"
-	./pbr &
+	@cp "bin/Linux/x64/pbr" "pbr"
+	@./pbr &
 
 debug: pbrrenderer-base
-	cp "bin/Linux/x64/pbr" "pbr"
-	gdb -ex run pbr
+	@cp "bin/Linux/x64/pbr" "pbr"
+	@gdb -ex run pbr
 
 clean:
-	rm -f "pbr" "bin/Linux/x64/pbr"
+	@rm -f "pbr" "bin/Linux/x64/pbr"

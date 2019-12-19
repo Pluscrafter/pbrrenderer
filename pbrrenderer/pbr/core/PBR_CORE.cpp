@@ -117,8 +117,8 @@ namespace pbr {
         }
 
         pbr::util::flags::PBR_STATUS setupShaders() {
-            std::string vShader = pbr::util::io::read("res/shaders/main/shader.vert");
-            std::string fShader = pbr::util::io::read("res/shaders/main/shader.frag");
+            std::string vShader = pbr::util::io::read("shaders/main/shader.vert");
+            std::string fShader = pbr::util::io::read("shaders/main/shader.frag");
             vShaderSource = vShader.c_str();
             fShaderSource = fShader.c_str();
             vs = glCreateShader(GL_VERTEX_SHADER);
