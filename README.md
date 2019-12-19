@@ -7,7 +7,7 @@
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/D3PSI/pbrrenderer/graphs/commit-activity)
 [![GitHub issues](https://img.shields.io/github/issues/D3PSI/pbrrenderer.svg)](https://github.com/D3PSI/pbrrenderer/issues/)
 [![GitHub issues-closed](https://img.shields.io/github/issues-closed/D3PSI/pbrrenderer.svg)](https://github.com/D3PSI/pbrrenderer/issues?q=is%3Aissue+is%3Aclosed)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://github.com/D3PSI/pbrrenderer/compare)
 [![GitHub pull-requests](https://img.shields.io/github/issues-pr/D3PSI/pbrrenderer.svg)](https://GitHub.com/D3PSI/pbrrenderer/pull/)
 [![GitHub pull-requests closed](https://img.shields.io/github/issues-pr-closed/D3PSI/pbrrenderer.svg)](https://GitHub.com/D3PSI/pbrrenderer/pull/)
 [![GPLv3 license](https://img.shields.io/badge/License-GPLv3-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
