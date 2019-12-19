@@ -6,7 +6,14 @@
 #ifndef PBR_SHADER_INTERFACE_HPP
 #define PBR_SHADER_INTERFACE_HPP
 
+#include <boost/filesystem.hpp>
+#include <boost/range/iterator_range.hpp>
+
 #include "../util/PBR_UTIL.hpp"
+
+#include <string>
+#include <vector>
+#include <map>
 
 
 namespace pbr {
@@ -30,7 +37,7 @@ namespace pbr {
              *      {_shaderSet}/*.tcs for a tesselation control shader
              * The function will automatically load and compile the shaders it finds
              */
-            PBRShaderInterface(const char* _shaderSet);
+            PBRShaderInterface(std::string _shaderSet);
 
             /**
              * Default destructor
@@ -39,7 +46,10 @@ namespace pbr {
 
         private:
 
-            static const char* SHADER_BASE_DIR;
+            static std::string SHADER_BASE_DIR;
+            std::string shaderSet;
+            std::map< pbr::util::flags::PBR_SHADER_TYPE, std::string > shaderPaths;
+            std::map< pbr::util::flags::PBR_SHADER_TYPE, std::string > shaders;
 
         };
 

@@ -9,6 +9,7 @@
 #include "../PBR.hpp"
 #include "../ui/PBR_UI.hpp"
 #include "../util/PBR_UTIL.hpp"
+#include "PBRShaderInterface.hpp"
 
 #include <iostream>
 

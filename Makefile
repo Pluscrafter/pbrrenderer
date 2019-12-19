@@ -1,5 +1,5 @@
-CFLAGS = -std=c++17 -Wall -Iext/SDL/include -Iext/stbimage -Iext/glad/include
-LDFLAGS = `pkg-config --static --libs glfw3` -lGL -lassimp -lSDL2 -lSDL2_image -lpthread
+CFLAGS = -std=c++17 -Wall -Wextra -Iext/SDL/include -Iext/stbimage -Iext/glad/include 
+LDFLAGS = `pkg-config --static --libs glfw3` -lGL -lassimp -lSDL2 -lSDL2_image -lpthread -lboost_system -lboost_filesystem
 
 SOURCES = $(shell find pbrrenderer -name "*.cpp") ext/glad/src/glad.c
 pbrrenderer_top = pbrrenderer

@@ -22,7 +22,7 @@ namespace pbr {
              * @param _path The path to the file on disk
              * @return Returns std::string as the read buffer
              */
-            std::string read(const char* _path);
+            std::string read(std::string _path);
 
         }
 

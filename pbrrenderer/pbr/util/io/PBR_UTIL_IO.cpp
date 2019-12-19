@@ -16,7 +16,7 @@ namespace pbr {
 
         namespace io {
 
-            std::string read(const char* _path) {
+            std::string read(std::string _path) {
                 std::ifstream fileStream;
                 std::string buf;
                 fileStream.exceptions(std::ifstream::failbit | std::ifstream::badbit);
@@ -29,7 +29,7 @@ namespace pbr {
                     return buf;
                 }
                 catch (std::ifstream::failure& _e) {
-                    //throw std::runtime_error(std::strcat("Failed to read file from ", _path));
+                    throw std::runtime_error("Failed to read file from " + _path);
                     return nullptr;
                 }
             }

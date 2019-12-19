@@ -15,7 +15,7 @@ addons:
       - clang++-6.0
   
 install:
-  - sudo make install
+  - sudo ./INSTALL.sh
 
 script: 
   - make

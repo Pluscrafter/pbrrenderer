@@ -37,6 +37,15 @@ namespace pbr {
                 PBR_BORDERLESS
             };
 
+            enum PBR_SHADER_TYPE {
+                PBR_VERTEX_SHADER,
+                PBR_FRAGMENT_SHADER,
+                PBR_GEOMETRY_SHADER,
+                PBR_COMPUTE_SHADER,
+                PBR_TESSELATION_EVALUATION_SHADER,
+                PBR_TESSELETION_CONTROL_SHADER
+            };
+
         }
 
     }

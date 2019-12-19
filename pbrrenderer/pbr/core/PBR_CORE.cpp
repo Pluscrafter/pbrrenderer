@@ -117,6 +117,7 @@ namespace pbr {
         }
 
         pbr::util::flags::PBR_STATUS setupShaders() {
+            pbr::core::PBRShaderInterface vShaderIF("main");
             std::string vShader = pbr::util::io::read("shaders/main/shader.vert");
             std::string fShader = pbr::util::io::read("shaders/main/shader.frag");
             vShaderSource = vShader.c_str();
