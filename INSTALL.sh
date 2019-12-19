@@ -54,7 +54,7 @@ else
             status=0
         fi
     elif [[ ${pkgman} == apt ]]; then
-        sudo apt update
+        apt-get update
         apt-get -y --fix-missing install make pkg-config gcc g++ gdb libglfw3 libglfw3-dev libglm-dev libassimp-dev assimp-utils libegl1-mesa-dev libsdl2-2.0-0 libsdl2-dev libsdl2-image-2.0-0 libsdl2-image-dev 
         if [[ $? -ne 0 ]]; then
             status=1
