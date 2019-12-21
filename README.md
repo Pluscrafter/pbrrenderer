@@ -1,4 +1,6 @@
-# pbrrenderer
+# Physically-Based Rendering in OpenGL 3.3 by D3PSI
+
+## pbrrenderer
 
 [![Build Status](https://travis-ci.com/D3PSI/pbrrenderer.svg?branch=master)](https://travis-ci.com/D3PSI/pbrrenderer)
 [![C/C++ CI](https://github.com/D3PSI/pbrrenderer/workflows/C/C++%20CI/badge.svg)](https://github.com/D3PSI/pbrrenderer/actions?query=workflow%3A"C%2FC%2B%2B+CI")
@@ -92,11 +94,11 @@ At the moment, there is no documentation as this project is still early in devel
 ### Linux
 
 #### Fedora
-If you are facing the problem that 'libassimp.so.5' isn't found anywhere.
+If you are facing the problem that `libassimp.so.5` isn't found anywhere.
 
     ./pbr: error while loading shared libraries: libassimp.so.5: cannot open shared object file: No such file or directory
 
-Then just simply make a copy of 'libassimp.so.3' or any other version and rename it to 'libassimp.so.5' in the specific folder.
+Then just simply make a copy of `libassimp.so.3` or any other version and rename it to `libassimp.so.5` in the specific folder.
     
     sudo cp /usr/lib64/libassimp.so.3 /usr/lib64/libassimp.so.5
     

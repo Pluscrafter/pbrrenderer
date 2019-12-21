@@ -39,7 +39,7 @@ else
     fi
     echo "Trying to install dependencies for ${distroname} using ${pkgman} on ${session}."
     if [[ ${pkgman} == yum ]]; then
-        if yum -y update && yum -y install cmake make pkgconf-pkg-config gcc g++ glm-devel glfw glfw-devel assimp assimp-devel SDL2 SDL2-devel SDL2_image SDL2_image-devel mesa-libGL-devel boost; then
+        if yum -y update && yum -y install cmake make pkgconf-pkg-config gcc g++ glm-devel glfw glfw-devel assimp assimp-devel SDL2 SDL2-devel SDL2_image SDL2_image-devel mesa-libGL-devel boost boost-system boost-devel boost-filesystem; then
             echo "Successfully installed dependencies for your system." 
             echo "Building project..."
         else
