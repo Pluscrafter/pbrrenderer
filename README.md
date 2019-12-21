@@ -69,7 +69,10 @@ At the moment, there is no documentation as this project is still early in devel
     */
     #include "pbr/PBR.hpp"
 
-
+    /**
+    * Serves as a keyboard input callback function for the PBR core engine
+    * @param _window A pointer to the GLFWwindow
+    */
     void keyboardInputCallback(GLFWwindow* _window) {
         if(glfwGetKey(_window, GLFW_KEY_SPACE) == GLFW_PRESS)
             std::cout << "This is an example on how you can define own key actions.\n";
