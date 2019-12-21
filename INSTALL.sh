@@ -38,39 +38,39 @@ else
         session=wayland
     fi
     echo "Trying to install dependencies for ${distroname} using ${pkgman} on ${session}."
-    status=-1
     if [[ ${pkgman} == yum ]]; then
-        yum -y install cmake make pkgconf-pkg-config gcc g++ glm-devel glfw glfw-devel assimp assimp-devel SDL2 SDL2-devel SDL2_image SDL2_image-devel mesa-libGL-devel boost
-        if [[ $? -ne 0 ]]; then
-            status=1
+        if yum -y update && yum -y install cmake make pkgconf-pkg-config gcc g++ glm-devel glfw glfw-devel assimp assimp-devel SDL2 SDL2-devel SDL2_image SDL2_image-devel mesa-libGL-devel boost; then
+            echo "Successfully installed dependencies for your system." 
+            echo "Building project..."
         else
-            status=0
+            echo "Failed to install dependencies!"
+            exit 1
         fi
     elif [[ ${pkgman} == pacman ]]; then
-        pacman -Sy --noconfirm cmake make pkg-config gcc gdb glm glfw-${session} assimp sdl2 sdl2_image boost boost-libs
-        if [[ $? -ne 0 ]]; then
-            status=1
+        if pacman -Syu --noconfirm && pacman -Sy --noconfirm cmake make pkg-config gcc gdb glm glfw-${session} assimp sdl2 sdl2_image boost boost-libs; then
+            echo "Successfully installed dependencies for your system." 
+            echo "Building project..."
         else
-            status=0
+            echo "Failed to install dependencies!"
+            exit 1
         fi
     elif [[ ${pkgman} == apt ]]; then
-        apt-get update
-        apt-get -y --fix-missing install make pkg-config gcc g++ gdb libglfw3 libglfw3-dev libglm-dev libassimp-dev assimp-utils libegl1-mesa-dev libsdl2-2.0-0 libsdl2-dev libsdl2-image-2.0-0 libsdl2-image-dev libboost-all-dev
-        if [[ $? -ne 0 ]]; then
-            status=1
+        if apt-get -y update && apt-get -y --fix-missing install make pkg-config gcc g++ gdb libglfw3 libglfw3-dev libglm-dev libassimp-dev assimp-utils libegl1-mesa-dev libsdl2-2.0-0 libsdl2-dev libsdl2-image-2.0-0 libsdl2-image-dev libboost-all-dev; then
+            echo "Successfully installed dependencies for your system." 
+            echo "Building project..."
         else
-            status=0
+            echo "Failed to install dependencies!"
+            exit 1
         fi
     else
         echo "No supported package manager found!"
         exit 1
     fi
-    if [[ status==0 ]]; then
-        echo "Successfully installed dependencies for your system. Building project..."
-        make
+    if make; then
         echo "Built the project. Execute it by running './pbr'. Enjoy!"
-        exit 0
     else
+        echo "Failed to build the project!"
         exit 1
     fi
+    exit 0
 fi

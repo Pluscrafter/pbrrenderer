@@ -3,7 +3,6 @@ os: linux
 dist: bionic
 compiler:
   - g++-7
-  - clang++6.0
 
 addons:
   apt:
@@ -12,7 +11,6 @@ addons:
     packages:
       - g++-7
       - gcc-7
-      - clang++-6.0
   
 install:
   - sudo ./INSTALL.sh
