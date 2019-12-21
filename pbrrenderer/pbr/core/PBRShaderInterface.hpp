@@ -40,6 +40,12 @@ namespace pbr {
             PBRShaderInterface(std::string _shaderSet);
 
             /**
+             * Binds the shader program to use during rendering
+             * @return Returns 0 or bigger on success, returns a negative number on failure
+             */
+            pbr::util::flags::PBR_STATUS bind(void);
+
+            /**
              * Default destructor
              */
             ~PBRShaderInterface(void);
@@ -49,7 +55,11 @@ namespace pbr {
             static std::string SHADER_BASE_DIR;
             std::string shaderSet;
             std::map< pbr::util::flags::PBR_SHADER_TYPE, std::string > shaderPaths;
-            std::map< pbr::util::flags::PBR_SHADER_TYPE, std::string > shaders;
+            std::map< pbr::util::flags::PBR_SHADER_TYPE, std::string > shadersRaw;
+            std::map< pbr::util::flags::PBR_SHADER_TYPE, uint32_t > shaders;
+            std::map< pbr::util::flags::PBR_SHADER_TYPE, const char* > shaderSources;
+
+            uint32_t ID;
 
         };
 

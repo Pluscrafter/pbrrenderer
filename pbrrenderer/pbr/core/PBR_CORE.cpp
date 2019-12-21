@@ -28,12 +28,7 @@ namespace pbr {
 
         unsigned int VBO;
         unsigned int VAO;
-        unsigned int vs;
-        unsigned int fs;
-        unsigned int shaderID;
-
-        const char* vShaderSource;
-        const char* fShaderSource;
+        pbr::core::PBRShaderInterface* shaderMain;
 
         pbr::util::flags::PBR_STATUS init() {
             pbr::ui::initLoadingScreen();
@@ -73,6 +68,7 @@ namespace pbr {
         }
 
         pbr::util::flags::PBR_STATUS clean() {
+            delete shaderMain;
             return pbr::util::flags::PBR_OK;
         } 
 
@@ -108,49 +104,14 @@ namespace pbr {
         pbr::util::flags::PBR_STATUS render() {
             glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-            glUseProgram(shaderID);
+            shaderMain->bind();
             glBindVertexArray(VAO);
             glDrawArrays(GL_TRIANGLES, 0, 3);
-
             return pbr::util::flags::PBR_OK;
         }
 
         pbr::util::flags::PBR_STATUS setupShaders() {
-            pbr::core::PBRShaderInterface vShaderIF("main");
-            std::string vShader = pbr::util::io::read("shaders/main/shader.vert");
-            std::string fShader = pbr::util::io::read("shaders/main/shader.frag");
-            vShaderSource = vShader.c_str();
-            fShaderSource = fShader.c_str();
-            vs = glCreateShader(GL_VERTEX_SHADER);
-            glShaderSource(vs, 1, &vShaderSource, nullptr);
-            glCompileShader(vs);
-            int succ;
-            char infoLog[1024];
-            glGetShaderiv(vs, GL_COMPILE_STATUS, &succ);
-            if(!succ) {
-                glGetShaderInfoLog(vs, 1024, nullptr, infoLog);
-                std::cerr << "Error compiling vertex shader:\n" << infoLog << std::endl;
-            }
-            fs = glCreateShader(GL_FRAGMENT_SHADER);
-            glShaderSource(fs, 1, &fShaderSource, nullptr);
-            glCompileShader(fs);
-            glGetShaderiv(fs, GL_COMPILE_STATUS, &succ);
-            if(!succ) {
-                glGetShaderInfoLog(fs, 1024, nullptr, infoLog);
-                std::cerr << "Error compiling fragment shader:\n" << infoLog << std::endl;
-            }
-            shaderID = glCreateProgram();
-            glAttachShader(shaderID, vs);
-            glAttachShader(shaderID, fs);
-            glLinkProgram(shaderID);
-            glGetProgramiv(shaderID, GL_LINK_STATUS, &succ);
-            if(!succ) {
-                glGetProgramInfoLog(shaderID, 1024, nullptr, infoLog);
-                std::cerr << "Error linking shader program:\n" << infoLog << std::endl;
-            }
-            glDeleteShader(vs);
-            glDeleteShader(fs);
+            shaderMain = new pbr::core::PBRShaderInterface("main");
             return pbr::util::flags::PBR_OK;
         }
 
